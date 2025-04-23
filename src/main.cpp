@@ -3,88 +3,7 @@
 //
 
 #include <iostream>
-#include <stack>
-#include "item_type.h"
-
-
-void nestedLoop(int arr[], int n, int x) {
-    for (int i=n-1; i > 0; i--) {
-        for (int j = i - 1; j >= 0; j--) {
-            if (arr[i] + arr[j] == x) {
-                std::cout << "Pair found: (" << arr[i] << ", " << arr[j] << ")" << std::endl;
-                return;
-            }
-        }
-    }
-}
-
-
-void recursiveLoop(int A[], int n, int x, int y = 0) {
-    if (n == 1) {
-        if (y != 0 && A[0] + y == x) {
-            std::cout << y << " " << A[0] << std::endl;
-        }
-        return;
-    }
-
-    if (y != 0) {
-        if (A[n - 1] + y == x) {
-            std::cout << y << " " << A[n - 1] << std::endl;
-        }
-        recursiveLoop(A, n - 1, x, y);
-    } else {
-        recursiveLoop(A, n - 1, x, A[n - 1]);
-        recursiveLoop(A, n - 1, x, 0);
-    }
-}
-
-void iterativeLoop(int arr[], int n, int x, int y = 0) {
-    std::stack<ItemType> s;
-    ItemType current = {n, y, START};
-    ItemType next = {n, y, START};
-    bool returnFromRecursion = false;
-
-    s.push(current);
-    while(!s.empty()){
-        current = s.top();
-        s.pop();
-        if (current.line == START) {
-            if (current.n == 1) {
-                if (current.y != 0 && arr[0] + current.y == x) {
-                    std::cout << current.y << " " << arr[0] << std::endl;
-                }
-                continue;
-            }
-            if (current.y != 0) {
-                if (arr[current.n - 1] + current.y == x) {
-                    std::cout << current.y << " " << arr[current.n - 1] << std::endl;
-                }
-                current.line = AFTER_FIRST;
-                s.push(current);
-
-                next = {current.n - 1, current.y, START};
-                s.push(next);
-            } else {
-                current.line = AFTER_SECOND;
-                s.push(current);
-                next = {current.n - 1, arr[current.n - 1], START};
-                s.push(next);
-            }
-
-        }
-        else if (current.line == AFTER_FIRST) {
-            std::cout << "";
-        } else if (current.line == AFTER_SECOND) {
-            current.line = AFTER_THIRD;
-            s.push(current);
-            next = {current.n - 1, 0, START};
-            s.push(next);
-        }
-        else if (current.line == AFTER_THIRD) {
-            std::cout << "";
-        }
-    }
-}
+#include "loops.h"
 
 
 int main() {
@@ -102,8 +21,13 @@ int main() {
     std::cout << "Enter the size of required sum" << std::endl;
     std::cin >> x;
 
-    // nestedLoop(arr, n, x);
-    // recursiveLoop(arr, n, x);
+    std::cout << "Nested loop:" << std::endl;
+    nestedLoop(arr, n, x);
+
+    std::cout << "Recursive loop:" << std::endl;
+    recursiveLoop(arr, n, x);
+
+    std::cout << "Iterative loop:" << std::endl;
     iterativeLoop(arr, n, x);
 
     return 0;

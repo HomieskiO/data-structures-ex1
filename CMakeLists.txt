@@ -8,4 +8,5 @@ include_directories(include)
 add_executable(Assignment_1
         src/item_type.cpp
         src/stack.cpp
-        src/main.cpp)
+        src/main.cpp
+        src/loops.cpp)
