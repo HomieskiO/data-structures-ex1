@@ -7,6 +7,12 @@
 #include "item_type.h"
 
 
+struct node{
+    int data;
+    struct node *next;
+};
+
+
 class Stack {
 private:
     std::vector<ItemType> vector;

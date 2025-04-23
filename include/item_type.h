@@ -4,17 +4,9 @@
 
 #pragma once
 
-
 class ItemType {
+    // TODO change to save all local variables, values passed to next recursive call, line to return to
 private:
-    int value;
 public:
-    ItemType();
-    ItemType(int value);
-    void SetValue(int value);
-    int GetValue() const;
-    bool operator==(const ItemType& other) const;
-    bool operator!=(const ItemType& other) const;
-    bool operator<(const ItemType& other) const;
-    bool operator>(const ItemType& other) const;
+    ItemType() = default;
 };
