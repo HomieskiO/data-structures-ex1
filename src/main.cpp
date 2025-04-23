@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "stack.h"
+#include <stack>
 #include "item_type.h"
 
 
@@ -38,8 +38,52 @@ void recursiveLoop(int A[], int n, int x, int y = 0) {
     }
 }
 
-void iterativeLoop() {
-    // TODO
+void iterativeLoop(int arr[], int n, int x, int y = 0) {
+    std::stack<ItemType> s;
+    ItemType current = {n, y, START};
+    ItemType next = {n, y, START};
+    bool returnFromRecursion = false;
+
+    s.push(current);
+    while(!s.empty()){
+        current = s.top();
+        s.pop();
+        if (current.line == START) {
+            if (current.n == 1) {
+                if (current.y != 0 && arr[0] + current.y == x) {
+                    std::cout << current.y << " " << arr[0] << std::endl;
+                }
+                continue;
+            }
+            if (current.y != 0) {
+                if (arr[current.n - 1] + current.y == x) {
+                    std::cout << current.y << " " << arr[current.n - 1] << std::endl;
+                }
+                current.line = AFTER_FIRST;
+                s.push(current);
+
+                next = {current.n - 1, current.y, START};
+                s.push(next);
+            } else {
+                current.line = AFTER_SECOND;
+                s.push(current);
+                next = {current.n - 1, arr[current.n - 1], START};
+                s.push(next);
+            }
+
+        }
+        else if (current.line == AFTER_FIRST) {
+            std::cout << "";
+        } else if (current.line == AFTER_SECOND) {
+            current.line = AFTER_THIRD;
+            s.push(current);
+            next = {current.n - 1, 0, START};
+            s.push(next);
+        }
+        else if (current.line == AFTER_THIRD) {
+            std::cout << "";
+        }
+    }
 }
 
 
@@ -59,6 +103,8 @@ int main() {
     std::cin >> x;
 
     // nestedLoop(arr, n, x);
-    recursiveLoop(arr, n, x);
+    // recursiveLoop(arr, n, x);
+    iterativeLoop(arr, n, x);
+
     return 0;
 }
