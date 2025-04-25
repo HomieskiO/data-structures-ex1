@@ -4,21 +4,35 @@
 
 #include "stack.h"
 
-Stack::Stack() = default;
+Stack::Stack() : top(nullptr) {
+}
 
-void Stack::push(ItemType item) {
-    this->vector.push_back(item);
+void Stack::MakeEmpty() {
+	ItemType::Node* temp;
+	while (top != nullptr) {
+		temp = top;
+		top = top->next;
+		delete temp;
+	}
 }
 
 bool Stack::isEmpty() const {
-    return this->vector.empty();
+    return top == nullptr;
+}
+
+void Stack::push(ItemType item) {
+    top = new ItemType::Node(item, top);
 }
 
 ItemType Stack::pop() {
-    if (!this->isEmpty()) {
-        ItemType last_item = this->vector.back();
-        this->vector.pop_back();
-        return last_item;
+    if (IsEmpty()) {
+        std::cerr << "Stack underflow!" << std::endl;
+        return ItemType();
     }
-    throw std::out_of_range("Stack is empty");
+
+    ItemType::Node* temp = top;
+    ItemType popped = temp->data;
+    top = top->next;
+    delete temp;
+    return popped;
 }

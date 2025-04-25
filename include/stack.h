@@ -3,19 +3,12 @@
 //
 
 #pragma once
-#include <vector>
 #include "item_type.h"
-
-
-struct node{
-    int data;
-    struct node *next;
-};
 
 
 class Stack {
 private:
-    std::vector<ItemType> vector;
+    ItemType::Node* top;
 public:
     Stack();
     bool isEmpty() const;

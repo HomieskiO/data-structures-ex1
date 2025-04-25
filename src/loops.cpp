@@ -4,7 +4,7 @@
 
 #include "loops.h"
 #include <iostream>
-#include <stack>
+#include "stack.h"
 #include "item_type.h"
 
 void nestedLoop(int arr[], int n, int x) {
@@ -38,7 +38,7 @@ void recursiveLoop(int A[], int n, int x, int y) {
 }
 
 void iterativeLoop(int arr[], int n, int x, int y) {
-    std::stack<ItemType> s;
+    Stack s;
     ItemType current = {n, y, START};
     ItemType next = {n, y, START};
 

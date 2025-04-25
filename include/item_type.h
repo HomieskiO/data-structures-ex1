@@ -32,4 +32,13 @@ class ItemType {
 public:
     int n, y, line;
     ItemType(int n, int y, int line);
+
+    
+    class Node {
+    public:
+        ItemType data;
+        Node* next;
+
+        Node(const ItemType& item, Node* ptr = nullptr) : data(item), next(ptr) {}
+    };
 };
