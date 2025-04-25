@@ -3,12 +3,13 @@
 //
 
 #include "stack.h"
+#include <iostream>
 
 Stack::Stack() : top(nullptr) {
 }
 
-void Stack::MakeEmpty() {
-	ItemType::Node* temp;
+void Stack::makeEmpty() {
+	Node* temp;
 	while (top != nullptr) {
 		temp = top;
 		top = top->next;
@@ -21,16 +22,16 @@ bool Stack::isEmpty() const {
 }
 
 void Stack::push(ItemType item) {
-    top = new ItemType::Node(item, top);
+    top = new Node(item, top);
 }
 
 ItemType Stack::pop() {
-    if (IsEmpty()) {
+    if (this->isEmpty()) {
         std::cerr << "Stack underflow!" << std::endl;
-        return ItemType();
+        throw std::runtime_error("Stack underflow");
     }
 
-    ItemType::Node* temp = top;
+    Node* temp = top;
     ItemType popped = temp->data;
     top = top->next;
     delete temp;

@@ -4,25 +4,6 @@
 
 #pragma once
 
-// void recursiveLoop(int A[], int n, int x, int y = 0) {
-//     if (n == 1) {
-//         if (y != 0 && A[0] + y == x) {
-//             std::cout << y << " " << A[0] << std::endl;
-//         }
-//         return;
-//     }
-//
-//     if (y != 0) {
-//         if (A[n - 1] + y == x) {
-//             std::cout << y << " " << A[n - 1] << std::endl;
-//         }
-//         recursiveLoop(A, n - 1, x, y);
-//     } else {
-//         recursiveLoop(A, n - 1, x, A[n - 1]);
-//         recursiveLoop(A, n - 1, x, 0);
-//     }
-// }
-
 constexpr int START = 1;
 constexpr int AFTER_FIRST = 2;
 constexpr int AFTER_SECOND = 3;
@@ -32,13 +13,12 @@ class ItemType {
 public:
     int n, y, line;
     ItemType(int n, int y, int line);
+};
 
-    
-    class Node {
-    public:
-        ItemType data;
-        Node* next;
+class Node {
+public:
+    ItemType data;
+    Node* next;
 
-        Node(const ItemType& item, Node* ptr = nullptr) : data(item), next(ptr) {}
-    };
+    Node(const ItemType& item, Node* ptr = nullptr) : data(item), next(ptr) {}
 };

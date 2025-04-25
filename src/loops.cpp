@@ -18,22 +18,22 @@ void nestedLoop(int arr[], int n, int x) {
 }
 
 
-void recursiveLoop(int A[], int n, int x, int y) {
+void recursiveLoop(int arr[], int n, int x, int y) {
     if (n == 1) {
-        if (y != 0 && A[0] + y == x) {
-            std::cout << y << " " << A[0] << std::endl;
+        if (y != 0 && arr[0] + y == x) {
+            std::cout << y << " " << arr[0] << std::endl;
         }
         return;
     }
 
     if (y != 0) {
-        if (A[n - 1] + y == x) {
-            std::cout << y << " " << A[n - 1] << std::endl;
+        if (arr[n - 1] + y == x) {
+            std::cout << y << " " << arr[n - 1] << std::endl;
         }
-        recursiveLoop(A, n - 1, x, y);
+        recursiveLoop(arr, n - 1, x, y);
     } else {
-        recursiveLoop(A, n - 1, x, A[n - 1]);
-        recursiveLoop(A, n - 1, x, 0);
+        recursiveLoop(arr, n - 1, x, arr[n - 1]);
+        recursiveLoop(arr, n - 1, x, 0);
     }
 }
 
@@ -43,9 +43,8 @@ void iterativeLoop(int arr[], int n, int x, int y) {
     ItemType next = {n, y, START};
 
     s.push(current);
-    while(!s.empty()){
-        current = s.top();
-        s.pop();
+    while(!s.isEmpty()){
+        current = s.pop();
         if (current.line == START) {
             if (current.n == 1) {
                 if (current.y != 0 && arr[0] + current.y == x) {
