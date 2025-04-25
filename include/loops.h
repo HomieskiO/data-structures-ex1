@@ -5,5 +5,5 @@
 #pragma once
 
 void nestedLoop(int A[], int n, int x);
-void recursiveLoop(int A[], int n, int x, int y = 0);
+void recursiveLoop(int arr[], int n, int x, int y = 0);
 void iterativeLoop(int A[], int n, int x, int y = 0);

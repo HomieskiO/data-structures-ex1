@@ -8,7 +8,7 @@
 
 class Stack {
 private:
-    ItemType::Node* top;
+    Node* top;
 public:
     Stack();
     bool isEmpty() const;
